@@ -1,7 +1,6 @@
 import React,{useLayoutEffect} from "react";
-import {View, Text, StyleSheet,FlatList} from 'react-native'
 import { MEALS ,CATEGORIES} from "../data/data";
-import MealItem from "../components/mealItem";
+import RenderAListOfMeals from "../components/renderAListOfMeals";
 /* import { useRoute } from "@react-navigation/native"; */
 
 const CategoryMealsScreen=({navigation, route})=>{
@@ -19,35 +18,7 @@ const CategoryMealsScreen=({navigation, route})=>{
         });
     },[catId,navigation])
 
-    const renderMealItem=(itemData)=>{
-        const mealItemProps={
-            id:itemData.item.id,
-            title:itemData.item.title,
-            imageUrl:itemData.item.imageUrl,
-            duration:itemData.item.duration,
-            complexity:itemData.item.complexity,
-            affordability:itemData.item.affordability,
-        }
-        return <MealItem 
-                    {...mealItemProps}
-                />
-    }
-
-    return (
-        <View style={styles.container}>
-            <FlatList
-                data={displayedMeals}
-                keyExtractor={(item)=>item.id}
-                renderItem={renderMealItem}
-            />
-        </View>
-    )
+    return (<RenderAListOfMeals items={displayedMeals}/>)
 }
 
 export default CategoryMealsScreen;
-const styles=StyleSheet.create({
-    container:{
-        flex:1,
-        padding:16,
-    }
-})

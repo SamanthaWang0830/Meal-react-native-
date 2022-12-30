@@ -3,28 +3,44 @@ import {View, Text,StyleSheet,Image,ScrollView, Button} from 'react-native'
 import { MEALS } from "../data/data";
 import MealDetailList from "../components/mealDetailList";
 import IconButton from "../components/iconButton";
+//import { FavoritesContext } from "../store/context/favorite-context";
+import { useSelector, useDispatch } from "react-redux";
+import { addFavorite,removeFavorite } from "../store/redux/favorite";
 
 const MealDetailScreen=({route,navigation})=>{
     const mealId= route.params.mealId;
     //把被点击的meal呈现出来，根据id
     const selectedMeal=MEALS.find((meal)=>meal.id==mealId)
     
-    const headerButtonPresshandler=()=>{
-        console.log('hi');
+    //use context hook
+    //const {ids,addFavorite,removeFavorite}=useContext(FavoritesContext)
+
+    const favoriteMealIds = useSelector((state) => state.favoriteMeals.ids);
+    const dispatch=useDispatch();
+
+    const checkIfMealIsFavorite= favoriteMealIds.includes(mealId) //boolean值
+    const favoriteButtonPresshandler=()=>{
+        if(checkIfMealIsFavorite){
+            //removeFavorite(mealId)
+            dispatch(removeFavorite({id:mealId}))
+        }else{
+            //addFavorite(mealId)
+            dispatch(addFavorite({id:mealId}))
+        }
     }
     useLayoutEffect(()=>{
         navigation.setOptions({
             headerRight:()=>{
                 return (
                 <IconButton 
-                    onPress={headerButtonPresshandler} 
-                    icon='star' 
+                    onPress={favoriteButtonPresshandler} 
+                    icon={checkIfMealIsFavorite? 'star' : 'star-outline'} 
                     color='white'
                 />
                 )
               }
         });
-    },[navigation, headerButtonPresshandler])
+    },[navigation, favoriteButtonPresshandler])
 
 
     return (
