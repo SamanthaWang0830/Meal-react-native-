@@ -1,10 +1,14 @@
 ## main page
-![main page](img-storage/mainPage.png)
+<img src='img-storage/mainPage.png' height='100'>
+
 ## use React Navigation to change to favoritePage
-![switch](img-storage/switchPage.png)
-![favorite page](img-storage/favoritePage.png)
+<img src='img-storage/switchPage.png' height='50'>
+<img src='img-storage/favoritePage.png' height='80'>
+
 ### inside of each category has some meals
-![meal overview](img-storage/overview.png)
+<img src='img-storage/overview.png' height='100'>
+
 ### click to look through meal detail
-![meal detail](img-storage/mealDetail.png)
+<img src='img-storage/mealDetail.png' height='100'>
+
 ### click the star which is at upper right corner to add this meal to your favorite list.
