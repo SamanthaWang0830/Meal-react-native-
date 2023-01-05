@@ -1,11 +1,11 @@
 import React,{useLayoutEffect} from "react";
-import {View, Text,StyleSheet,Image,ScrollView, Button} from 'react-native'
+import {View, Text,StyleSheet,Image,ScrollView} from 'react-native'
 import { MEALS } from "../data/data";
 import MealDetailList from "../components/mealDetailList";
 import IconButton from "../components/iconButton";
 //import { FavoritesContext } from "../store/context/favorite-context";
 import { useSelector, useDispatch } from "react-redux";
-import { addFavorite,removeFavorite } from "../store/redux/favorite";
+import { addFavorite,removeFavorite, selectFavorites} from "../store/redux/favorite";
 
 const MealDetailScreen=({route,navigation})=>{
     const mealId= route.params.mealId;
@@ -15,8 +15,9 @@ const MealDetailScreen=({route,navigation})=>{
     //use context hook
     //const {ids,addFavorite,removeFavorite}=useContext(FavoritesContext)
 
-    const favoriteMealIds = useSelector((state) => state.favoriteMeals.ids);
     const dispatch=useDispatch();
+    const favoriteMealIds = useSelector(selectFavorites); //获取当前store中的ids值
+    
 
     const checkIfMealIsFavorite= favoriteMealIds.includes(mealId) //boolean值
     const favoriteButtonPresshandler=()=>{

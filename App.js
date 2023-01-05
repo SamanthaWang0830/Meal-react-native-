@@ -10,6 +10,7 @@ import MealDetailScreen from './screens/mealDetailScreen';
 import FavoriteScreen from './screens/favoriteScreen';
 import { Ionicons } from '@expo/vector-icons'; 
 /* import FavoritesContextProvider from './store/context/favorite-context'; */
+//now we don't use useContext hook, instead we use Redux
 import { Provider } from 'react-redux';
 import { store } from './store/redux/store';
 
